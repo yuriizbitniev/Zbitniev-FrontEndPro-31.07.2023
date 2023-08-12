@@ -6,9 +6,17 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Numbers and strings</title>
-    <script src="index.js"></script>
 </head>
 <body>
-
+<script>
+    const line1 = prompt('Write line 1', '');
+    const line2 = prompt('Write line 2', '');
+    const line3 = prompt('Write line 3', '');
+    const arrlines = [line1, line2, line3];
+    alert(arrlines);
+    const number5 = prompt('Enter a five-digit number', '');
+    const newStr = number5.replace(/(\d)/g, "$1 ");
+    alert('Enter a five-digit number :' + newStr);
+</script>
 </body>
 </html>
