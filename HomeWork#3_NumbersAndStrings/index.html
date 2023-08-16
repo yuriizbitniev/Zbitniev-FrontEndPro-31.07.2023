@@ -9,14 +9,22 @@
 </head>
 <body>
 <script>
-    const line1 = prompt('Write line 1', '');
-    const line2 = prompt('Write line 2', '');
-    const line3 = prompt('Write line 3', '');
-    const arrlines = [line1, line2, line3];
-    alert(arrlines);
+    const word1 = prompt('Write word 1', '');
+    const word2 = prompt('Write word 2', '');
+    const word3 = prompt('Write word 3', '');
+    const arrlines = [word1, word2, word3];
+    const result = arrlines.join(', ');
+
+    alert(result) ;
+
     const number5 = prompt('Enter a five-digit number', '');
-    const newStr = number5.replace(/(\d)/g, "$1 ");
-    alert('Enter a five-digit number :' + newStr);
+
+    if (number5 === null || number5 === '') {
+        alert('You cancelled or entered an empty value.');
+    } else {
+        const newStr = number5.replace(/(\d)/g, "$1 ");
+        alert('Entered a five-digit number: ' + newStr);
+    }
 </script>
 </body>
 </html>
