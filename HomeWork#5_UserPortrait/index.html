@@ -6,10 +6,60 @@
 </head>
 <body>
 <script>
-    var birthYear = prompt("Enter your birth year:");
-    var city = prompt("Which city do you live in?");
-    var favoriteSport = prompt("What's your favorite sport?");
+    const birthYear = prompt('Enter the year of birth:');
+    if (birthYear === null || birthYear === '') {
+        alert('Too bad you did not want to enter your year of birth.');
+    } else {
+        const currentYear = new Date().getFullYear();
+        const age = currentYear - parseInt(birthYear);
 
+        const city = prompt('Enter the city in which you live:');
+        if (city === null || city === '') {
+            alert('Too bad you did not want to enter your city of residence.');
+        } else {
+            let message = 'You live ';
+            if (city === 'Kyiv' || city === 'Washington' || city === 'London') {
+                let country;
+                switch (city) {
+                    case 'Kyiv':
+                        country = 'in Ukraine';
+                        break;
+                    case 'Washington':
+                        country = 'in the U.S.';
+                        break;
+                    case 'London':
+                        country = 'in the UK';
+                        break;
+                }
+                message += `in the capital ${country}.`;
+            } else {
+                message += `in the city ${city}.`;
+            }
+
+            const favoriteSport = prompt('Enter your favorite sport:');
+            if (favoriteSport === null || favoriteSport === '') {
+                alert('Too bad you did not want to enter your favorite sport.');
+            } else {
+                let championInfo = '';
+                switch (favoriteSport) {
+                    case 'formula1':
+                        championInfo = 'Cool! Want to be a soccer star like Lewis Hamilton?';
+                        break;
+                    case 'basketball':
+                        championInfo = 'Cool! You want to be a basketball champion like LeBron James?';
+                        break;
+                    case 'tennis':
+                        championInfo = 'Cool! You want to be a tennis legend like Rafael Nadal?';
+                        break;
+                    default:
+                        championInfo = `You love ${favoriteSport}! Maybe you will become a champion in this sport!`;
+                        break;
+                }
+
+                alert(`Age: ${age}\n${message}\n${championInfo}`);
+            }
+        }
+    }
 </script>
 </body>
 </html>
