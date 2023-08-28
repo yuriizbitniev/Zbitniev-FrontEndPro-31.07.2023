@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>More complex loops</title>
+</head>
+<body>
+<script>
+    //Вывести числа от 20 до 30 с шагом 0.5:
+    for (let i = 20; i <= 30; i += 0.5) {
+        console.log(i);
+    }
+
+    //Один доллар стоит 27 гривен. Вывести данные с расчетом стоимости 10, 20, 30... 100 долларов.
+    const exchangeRate = 27;
+    for (let USD = 10; USD <= 100; USD += 10) {
+        const UAH = USD * exchangeRate;
+        console.log(`${USD} долларов = ${UAH} гривен`);
+    }
+
+    //Дано целое число. Вывести все целые числа от 1 до 100, квадрат которых не превышает числа N.
+    const N = 100; // Поставить целое число
+    for (let i = 1; i <= 100; i++) {
+        if (i * i <= N) {
+            console.log(i);
+        }
+    }
+
+    //Дано целое число. Выяснить, является ли оно простым
+    function isPrime(number) {
+        if (number <= 1) {
+            return false;
+        }
+        for (let i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i === 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    const num = 17; // Замените на нужное число
+    if (isPrime(num)) {
+        console.log(`${num} - простое число`);
+    } else {
+        console.log(`${num} - не является простым числом`);
+    }
+
+    //Дано некоторое число. Определить, можно ли получить это число путем возведения числа 3 в некоторую степень.
+    function isPowerOfThree(number) {
+        if (number === 1) {
+            return true;
+        }
+        let base = 3;
+        while (base <= number) {
+            if (base === number) {
+                return true;
+            }
+            base *= 3;
+        }
+        return false;
+    }
+
+    const targetNumber = 81; // Замените на нужное число
+    if (isPowerOfThree(targetNumber)) {
+        console.log(`${targetNumber} можно получить как 3^x`);
+    } else {
+        console.log(`${targetNumber} нельзя получить как 3^x`);
+    }
+</script>
+</body>
+</html>
