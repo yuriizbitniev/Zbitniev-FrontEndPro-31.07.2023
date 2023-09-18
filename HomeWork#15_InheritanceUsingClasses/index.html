@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>InheritanceUsingClasses</title>
+</head>
+<body>
+<script>
+    class SuperArray extends Array {
+        constructor(...elements) {
+            super(...elements);
+        }
+        sum() {
+            let total = 0;
+            for (const el of this) {
+                if (typeof el !== 'number') {
+                    throw new TypeError(`${el} is not a number`);
+                }
+                total += el;
+            }
+            return total;
+        }
+    }
+    const names = new SuperArray('Bob', 'Jane');
+    console.log(names); // ['Bob', 'Jane'];
+
+    const nums = new SuperArray(10, 20, 30, 40, -100, 50);
+    const total = nums.sum();
+    console.log(total); // 50;
+
+</script>
+</body>
+</html>
