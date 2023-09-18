@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Student</title>
+</head>
+<body>
+<script>
+  function Student(firstName, lastName, birthYear) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.birthYear = birthYear;
+    this.grades = []; // Array of estimates
+    this.attendance = new Array(25).fill(false); // Array of attendance (25 classes each)
+
+    // Adding a grade to an array of grades
+    this.addGrade = function(grade) {
+      this.grades.push(grade);
+    };
+
+    // Marking a visit
+    this.present = function() {
+      if (this.attendance.length < 25) {
+        this.attendance.push(true);
+      }
+    };
+
+    // Marking of absence
+    this.absent = function() {
+      if (this.attendance.length < 25) {
+        this.attendance.push(false);
+      }
+    };
+
+    // Age calculation
+    this.getAge = function() {
+      const currentYear = new Date().getFullYear();
+      return currentYear - this.birthYear;
+    };
+
+    // Calculating the average score
+    this.getAverageGrade = function() {
+      if (this.grades.length === 0) {
+        return 0;
+      }
+      const sum = this.grades.reduce((acc, grade) => acc + grade, 0);
+      return sum / this.grades.length;
+    };
+
+    // Calculation of average attendance
+    this.getAverageAttendance = function() {
+      if (this.attendance.length === 0) {
+        return 0;
+      }
+      const presentCount = this.attendance.filter(status => status).length;
+      return presentCount / this.attendance.length;
+    };
+
+    // Student evaluation
+    this.summary = function() {
+      const averageGrade = this.getAverageGrade();
+      const averageAttendance = this.getAverageAttendance();
+
+      if (averageGrade > 90 && averageAttendance > 0.9) {
+        return "Молодець!";
+      } else if (averageGrade > 90 || averageAttendance > 0.9) {
+        return "Добре, але можна краще";
+      } else {
+        return "Редиска!";
+      }
+    };
+  }
+
+  // Examples of creating students and using methods
+  const student1 = new Student("John", "Doe", 1998);
+  const student2 = new Student("Alice", "Smith", 1999);
+
+  student1.addGrade(95);
+  student1.addGrade(85);
+  student1.present();
+  student1.present();
+  student1.present();
+  student1.absent();
+
+  student2.addGrade(92);
+  student2.addGrade(88);
+  student2.present();
+  student2.present();
+  student2.present();
+  student2.present();
+
+  console.log(student1.summary());
+  console.log(student2.summary());
+</script>
+
+</body>
+</html>
