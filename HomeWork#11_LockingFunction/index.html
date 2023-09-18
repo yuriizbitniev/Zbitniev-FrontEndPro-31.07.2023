@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LockingFunction</title>
+</head>
+<body>
+<script>
+    //Написати функцію, яка приймає 1 параметр. з тим, що передали перший раз і т. д
+    function createSumFunction() {
+        let total = 0;
+
+        return function addValue(value) {
+            total += value;
+            return total;
+        };
+    }
+
+    const sum = createSumFunction();
+
+    console.log(sum(3)); // Output: 3
+    console.log(sum(5)); // Output: 8
+    console.log(sum(20)); // Output: 28
+
+</script>
+</body>
+</html>
