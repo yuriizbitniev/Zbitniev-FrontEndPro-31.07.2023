@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WriteMultipleFunctions</title>
+</head>
+<body>
+<script>
+    //1. Дано масив з елементами різних типів. Створити функцію яка вираховує середнє арифметичне лише числових елементів даного масиву.
+    function calculateNumericMean(arr) {
+        let sum = 0;
+        let count = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (typeof arr[i] === 'number') {
+                sum += arr[i];
+                count++;
+            }
+        }
+        if (count === 0) {
+            return 0;
+        }
+        return sum / count;
+    }
+    const mixedArray = [16, "hello", -37, "world", 54, true, -4, 72];
+    const mean = calculateNumericMean(mixedArray);
+    console.log("Arithmetic mean of numeric elements:", mean);
+
+    //2. Написати функцію doMath(x, znak, y), яка отримує 3 аргументи: числа x і y, рядок znak. У змінній znak може бути: +, -, *, /, %, ^ (ступінь ).Вивести результат математичної дії, вказаної в змінній znak.Обидва числа і знак виходять від користувача.
+    function calculateNumericMean(arr) {
+        let sum = 0;
+        let count = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (typeof arr[i] === 'number') {
+                sum += arr[i];
+                count++;
+            }
+        }
+        if (count === 0) {
+            return 0;
+        }
+        return sum / count;
+    }
+    const mixedArray = [16, "hello", -37, "world", 54, true, -4, 72];
+    const mean = calculateNumericMean(mixedArray);
+    console.log("Arithmetic mean of numeric elements:", mean);
+
+    //3. Написати функцію заповнення даними користувача двомірного масиву. Довжину основного масиву і внутрішніх масивів задає користувач. Значення всіх елементів всіх масивів задає користувач.
+    function fillTwoDimensionalArray() {
+        const numRows = parseInt(prompt("Enter the number of rows (length of the main array):"));
+        const numCols = parseInt(prompt("Enter the number of columns (length of internal arrays):"));
+        if (isNaN(numRows) || isNaN(numCols) || numRows <= 0 || numCols <= 0) {
+            console.log("Invalid input. Please enter positive numbers for rows and columns.");
+            return;
+        }
+        const twoDimArray = [];
+        for (let i = 0; i < numRows; i++) {
+            const row = [];
+            for (let j = 0; j < numCols; j++) {
+                const value = prompt(`Enter a value for element at row ${i} and column ${j}:`);
+                row.push(value);
+            }
+            twoDimArray.push(row);
+        }
+        return twoDimArray;
+    }
+    const userDefinedArray = fillTwoDimensionalArray();
+    console.log("User-defined two-dimensional array:", userDefinedArray);
+
+    //4. Створити функцію, яка прибирає з рядка всі символи, які ми передали другим аргументом. 'func(" hello world", ['l', 'd'])' поверне нам "heo wor". Вихідний рядок та символи для видалення задає користувач.
+    function removeCharacters(sourceString, charactersToRemove) {
+        const pattern = new RegExp(`[${charactersToRemove.join('')}]`, 'g');
+        const resultString = sourceString.replace(pattern, '');
+        return resultString;
+    }
+    const sourceString = " hello world";
+    const charactersToRemove = ['l', 'd'];
+    const result = removeCharacters(sourceString, charactersToRemove);
+    console.log(result);
+</script>
+</body>
+</html>
