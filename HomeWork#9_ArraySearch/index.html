@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ArraySearch</title>
+</head>
+<body>
+<script>
+    //1.Знайти суму та кількість позитивних елементів.
+    const array = [16, -37, 54, -4, 72, -56, 47, 4, -16, 25, -37, 46, 4, -51, 27, -63, 4, -54, 76, -4, 12, -35, 4, 47];
+    let sumOfPositives = 0;
+    let countOfPositives = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] > 0) {
+            sumOfPositives += array[i];
+            countOfPositives++;
+        }
+    }
+    console.log("Sum of positive elements:", sumOfPositives);
+    console.log("Number of positive elements:", countOfPositives);
+
+
+    //2.Знайти мінімальний елемент масиву та його порядковий номер.
+    let minElement = array[0];
+    let minElementIndex = 0;
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] < minElement) {
+            minElement = array[i];
+            minElementIndex = i;
+        }
+    }
+    console.log("Minimum element:", minElement);
+    console.log("Index of the minimum element:", minElementIndex);
+
+    //3.Знайти максимальний елемент масиву та його порядковий номер.
+    let maxElement = array[0];
+    let maxElementIndex = 0;
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] > maxElement) {
+            maxElement = array[i];
+            maxElementIndex = i;
+        }
+    }
+    console.log("Maximum element:", maxElement);
+    console.log("Index of the maximum element:", maxElementIndex);
+
+    //4.Визначити кількість негативних елементів.
+    let countOfNegatives = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] < 0) {
+            countOfNegatives++;
+        }
+    }
+    console.log("Number of negative elements:", countOfNegatives);
+
+    //5.Знайти кількість непарних позитивних елементів.
+    let countOfOddPositives = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] > 0 && array[i] % 2 !== 0) {
+            countOfOddPositives++;
+        }
+    }
+    console.log("Number of odd positive elements:", countOfOddPositives);
+
+    //6.Знайти кількість парних позитивних елементів.
+    let countOfEvenPositives = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] > 0 && array[i] % 2 === 0) {
+            countOfEvenPositives++;
+        }
+    }
+    console.log("Number of even positive elements:", countOfEvenPositives);
+
+    //7.Знайти суму парних позитивних елементів.
+    let sumOfEvenPositives = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] > 0 && array[i] % 2 === 0) {
+            sumOfEvenPositives += array[i];
+        }
+    }
+    console.log("Sum of even positive elements:", sumOfEvenPositives);
+
+    //8.Знайти суму непарних позитивних елементів.
+    let sumOfOddPositives = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] > 0 && array[i] % 2 !== 0) {
+            sumOfOddPositives += array[i];
+        }
+    }
+    console.log("Sum of odd positive elements:", sumOfOddPositives);
+
+    //9.Знайти добуток позитивних елементів.
+    let productOfPositives = 1;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] > 0) {
+            productOfPositives *= array[i];
+        }
+    }
+    console.log("Product of positive elements:", productOfPositives);
+
+    //10.Знайти найбільший серед елементів масиву, ост альні обнулити.
+    let largestElement = Math.max(...array);
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] !== largestElement) {
+            array[i] = 0;
+        }
+    }
+    console.log("Array with the largest element set to zero:", array);
+
+</script>
+</body>
+</html>
