@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UserRoles</title>
+</head>
+<body>
+<script>
+  const Role = Object.freeze({
+    Admin: 'admin',
+    Editor: 'editor',
+    Reader: 'reader',
+    SuperAdmin: 'superadmin',
+  });
+
+  function User(id, firstName, lastName, role) {
+    this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
+
+    Object.defineProperty(this, 'role', {
+      value: role,
+      writable: false,
+      configurable: false,
+    });
+  }
+
+  delete Role.Reader;
+  console.log(Role.Admin);
+  Role.Admin = 'hello';
+  Role.newProp = 'value';
+
+  const editor = new User(1, 'John', 'Doe', Role.Admin);
+  console.log(editor.role);
+  console.log(editor.role === Role.Admin);
+  editor.role = false;
+  delete editor.role;
+
+</script>
+</body>
+</html>
