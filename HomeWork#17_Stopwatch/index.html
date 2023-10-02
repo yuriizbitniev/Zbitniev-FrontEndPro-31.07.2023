@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stopwatch</title>
+</head>
+<body>
+<script>
+    class StopWatch {
+        constructor(onTickCallback) {
+            this.onTickCallback = onTickCallback;
+            this.isRunning = false;
+            this.hours = 0;
+            this.minutes = 0;
+            this.seconds = 0;
+            this.intervalId = null;
+        }
+
+        start() {
+            if (!this.isRunning) {
+                this.isRunning = true;
+                this.intervalId = setInterval(() => {
+                    this.tick();
+                    this.onTickCallback(this.getTime());
+                }, 1000);
+            }
+        }
+
+        tick() {
+            this.seconds++;
+            if (this.seconds === 60) {
+                this.seconds = 0;
+                this.minutes++;
+                if (this.minutes === 60) {
+                    this.minutes = 0;
+                    this.hours++;
+                }
+            }
+        }
+
+        pause() {
+            if (this.isRunning) {
+                clearInterval(this.intervalId);
+                this.isRunning = false;
+            }
+        }
+
+        reset() {
+            this.pause();
+            this.hours = 0;
+            this.minutes = 0;
+            this.seconds = 0;
+        }
+
+        getTime() {
+            return {
+                hours: this.hours,
+                minutes: this.minutes,
+                seconds: this.seconds,
+            };
+        }
+    }
+
+    const onTick = (time) => console.log(time);
+    const stopWatch = new StopWatch(onTick);
+
+    stopWatch.start();
+
+
+    setTimeout(() => {
+        stopWatch.pause();
+        console.log(stopWatch.getTime());
+    }, 5000);
+
+    setTimeout(() => {
+        stopWatch.reset();
+        console.log(stopWatch.getTime());
+    }, 10000);
+</script>
+</body>
+</html>
