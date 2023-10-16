@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form for registration</title>
+</head>
+<body>
+<form id="registration-form">
+    <label for="first-name">Ім'я:</label>
+    <input type="text" id="first-name" name="first-name" required><br>
+
+    <label for="last-name">Прізвище:</label>
+    <input type="text" id="last-name" name="last-name" required><br>
+
+    <label for="dob">Дата народження:</label>
+    <input type="text" id="dob" name="dob" required><br>
+    
+    <label>Стать:</label>
+    <input type="radio" id="male" name="gender" value="Male">
+    <label for="male">Чоловік</label>
+    <input type="radio" id="female" name="gender" value="Female">
+    <label for="female">Жінка</label><br>
+
+    <label for="city">Місто:</label>
+    <select id="city" name="city">
+        <option value="Kyiv">Київ</option>
+        <option value="Lviv">Львів</option>
+        <option value="Kharkiv">Харків</option>
+    </select><br>
+
+    <label for="address">Адреса:</label>
+    <textarea id="address" name="address"></textarea><br>
+
+    <label>Мови, якими володієте:</label>
+    <input type="checkbox" id="english" name="languages" value="English">
+    <label for="english">Англійська</label>
+    <input type="checkbox" id="french" name="languages" value="French">
+    <label for="french">Французька</label><br>
+
+    <button type="button" id="submit-button">Зберегти</button>
+</form>
+
+<div id="table-container">
+    <!-- Сюди буде вставлена таблиця даних -->
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
