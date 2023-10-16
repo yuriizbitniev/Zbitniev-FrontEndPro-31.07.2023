@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Stopwatches</title>
+</head>
+<body>
+<div class="container">
+    <script>
+        import Stopwatch from './stopwatch.js';
+        import StopwatchUI from './stopwatch-ui.js';
+
+        const initialTime = { hours: 0, minutes: 0, seconds: 0 };
+
+        const ui1 = new StopwatchUI(initialTime);
+        const onTick1 = (time) => ui1.setTime(time);
+        const stopwatch1 = new Stopwatch(onTick1);
+
+        ui1.addStartBtnListener(() => stopwatch1.start());
+        ui1.addPauseBtnListener(() => stopwatch1.pause());
+        ui1.addResetBtnListener(() => stopwatch1.reset());
+
+        ui1.appendStopwatch(document.body);
+
+        const ui2 = new StopwatchUI(initialTime);
+        const onTick2 = (time) => ui2.setTime(time);
+        const stopwatch2 = new Stopwatch(onTick2);
+
+        ui2.addStartBtnListener(() => stopwatch2.start());
+        ui2.addPauseBtnListener(() => stopwatch2.pause());
+        ui2.addResetBtnListener(() => stopwatch2.reset());
+
+        ui2.appendStopwatch(document.body);z
+    </script>
+    <h1>Stopwatch App</h1>
+    <div class="stopwatch-container">
+        <!-- Сюди буде додано годинник через JavaScript -->
+    </div>
+    <div class="buttons">
+        <button class="start-btn">Start</button>
+        <button class="pause-btn">Pause</button>
+        <button class="reset-btn">Reset</button>
+    </div>
+</div>
+<script src="index.js"></script>
+</body>
+</html>
