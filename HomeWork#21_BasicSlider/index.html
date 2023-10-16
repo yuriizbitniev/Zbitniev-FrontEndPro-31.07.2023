@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BasicSlider</title>
+    <style>
+        #slider-container {
+            width: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+        #slider {
+            width: 300px;
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+        .slide {
+            width: 300px;
+            height: 200px;
+        }
+        button {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="slider-container">
+    <div id="slider">
+        <div class="slide"><img src="img/image1.jpg" alt="Image 1"></div>
+        <div class="slide"><img src="img/image2.jpg" alt="Image 2"></div>
+        <div class="slide"><img src="img/image3.jpg" alt="Image 3"></div>
+    </div>
+</div>
+<button id="prev">Prev</button>
+<button id="next">Next</button>
+
+<script>
+    const slider = document.getElementById('slider');
+    const prevButton = document.getElementById('prev');
+    const nextButton = document.getElementById('next');
+    let currentIndex = 0;
+
+    function updateButtons() {
+        prevButton.disabled = currentIndex === 0;
+        nextButton.disabled = currentIndex === slider.children.length - 1;
+    }
+
+    prevButton.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            const translateX = currentIndex * 300;
+            slider.style.transform = `translateX(-${translateX}px)`;
+            updateButtons();
+        }
+    });
+
+    nextButton.addEventListener('click', () => {
+        if (currentIndex < slider.children.length - 1) {
+            currentIndex++;
+            const translateX = currentIndex * 300;
+            slider.style.transform = `translateX(-${translateX}px)`;
+            updateButtons();
+        }
+    });
+
+    updateButtons();
+</script>
+</body>
+</html>
