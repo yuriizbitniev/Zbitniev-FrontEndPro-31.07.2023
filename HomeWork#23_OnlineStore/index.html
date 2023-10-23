@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>OnlineStore</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Інтернет-магазин</title>
+</head>
+<body>
+<div id="app">
+    <header>
+        <h1>Магазин</h1>
+        <a href="#" id="cart-link">Basket (<span id="cart-count">0</span>)</a>
+    </header>
+    <div class="container">
+        <div class="categories">
+            <h2>Категорії</h2>
+            <ul>
+                <li><a href="#" class="category-link" data-category="flowers">Квіти</a></li>
+                <li><a href="#" class="category-link" data-category="clothing">Одяг</a></li>
+                <li><a href="#" class="category-link" data-category="electronics">Електроніка</a></li>
+            </ul>
+        </div>
+        <div class="products">
+            <h2>Товари</h2>
+            <ul id="product-list">
+                <!-- Сюди будуть додані товари -->
+            </ul>
+        </div>
+        <div class="product-info">
+            <h2>Інформація про товар</h2>
+            <div id="product-details">
+                <!-- Сюди буде відображатися інформація про товар -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const productData = {
+            flowers: [
+                { id: 1, name: "Рожі", price: 10 },
+                { id: 2, name: "Тюльпани", price: 8 },
+            ],
+            clothing: [
+                { id: 3, name: "Футболка", price: 15 },
+                { id: 4, name: "Джинси", price: 25 },
+            ],
+            electronics: [
+                { id: 5, name: "Смартфон", price: 200 },
+                { id: 6, name: "Планшет", price: 150 },
+            ],
+        };
+
+        let cart = [];
+        let cartCount = 0;
+
+        const cartLink = document.getElementById("cart-link");
+        const cartCountSpan = document.getElementById("cart-count");
+        const productList = document.getElementById("product-list");
+        const productDetails = document.getElementById("product-details");
+
+        function renderProducts(category) {
+            productList.innerHTML = "";
+            productData[category].forEach(product => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `<a href="#" class="product-link" data-category="${category}" data-id="${product.id}">${product.name}</a>`;
+                productList.appendChild(listItem);
+            });
+        }
+
+        function renderCart() {
+            cartCountSpan.textContent = cartCount;
+            cartLink.setAttribute("href", "#/basket");
+
+            if (cart.length === 0) {
+                productDetails.innerHTML = "Корзина порожня.";
+            } else {
+                productDetails.innerHTML = "Список доданих товарів:<ul>";
+                cart.forEach(item => {
+                    productDetails.innerHTML += `<li>${item.name} - ${item.price} грн</li>`;
+                });
+                productDetails.innerHTML += "</ul>";
+            }
+        }
+
+        // Обробка кліків на категорії
+        const categoryLinks = document.querySelectorAll(".category-link");
+        categoryLinks.forEach(link => {
+            link.addEventListener("click", function(event) {
+                event.preventDefault();
+                const category = event.target.getAttribute("data-category");
+                renderProducts(category);
+            });
+        });
+
+        // Обробка кліків на товари
+        productList.addEventListener("click", function(event) {
+            if (event.target.classList.contains("product-link")) {
+                event.preventDefault();
+                const category = event.target.getAttribute("data-category");
+                const productId = parseInt(event.target.getAttribute("data-id"));
+                const selectedProduct = productData[category].find(product => product.id === productId);
+
+                if (selectedProduct) {
+                    cart.push(selectedProduct);
+                    cartCount++;
+                    renderCart();
+                }
+            }
+        });
+
+        // Обробка кліку на корзину
+        cartLink.addEventListener("click", function(event) {
+            event.preventDefault();
+            if (cart.length > 0) {
+                renderCart();
+            } else {
+                productDetails.innerHTML = "Корзина порожня.";
+            }
+        });
+    });
+
+</script>
+</body>
+</html>
+
+</body>
+</html>
