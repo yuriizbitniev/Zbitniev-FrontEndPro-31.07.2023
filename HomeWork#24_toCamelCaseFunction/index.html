@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>toCamelCase Function</title>
+</head>
+<body>
+<script>
+    function toCamelCase(inputString) {
+        const words = inputString.split('_');
+
+        if (words.length <= 1) {
+            return inputString;
+        }
+
+        const camelCaseWords = words.map((word, index) => {
+            if (index === 0) {
+                return word;
+            }
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        });
+
+        const camelCaseString = camelCaseWords.join('');
+
+        return camelCaseString;
+    }
+
+    console.log(toCamelCase('hello_world')); // 'helloWorld'
+    console.log(toCamelCase('very_long_property_name')); // 'veryLongPropertyName'
+    console.log(toCamelCase('kebab-case-key')); // 'kebab-case-key' (не потребує змін)
+
+</script>
+</body>
+</html>
