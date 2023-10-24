@@ -9,28 +9,36 @@
 </head>
 <body>
 <script>
-    function toCamelCase(inputString) {
-        const words = inputString.split('_');
-
-        if (words.length <= 1) {
-            return inputString;
-        }
-
-        const camelCaseWords = words.map((word, index) => {
-            if (index === 0) {
-                return word;
-            }
-            return word.charAt(0).toUpperCase() + word.slice(1);
+    function toCamelCase(input) {
+        return input.replace(/_([a-z])/g, function (match, group1) {
+            return group1.toUpperCase();
         });
-
-        const camelCaseString = camelCaseWords.join('');
-
-        return camelCaseString;
     }
-
     console.log(toCamelCase('hello_world')); // 'helloWorld'
     console.log(toCamelCase('very_long_property_name')); // 'veryLongPropertyName'
-    console.log(toCamelCase('kebab-case-key')); // 'kebab-case-key' (не потребує змін)
+    console.log(toCamelCase('kebab-case-key')); // 'kebab-case-key' (неміняється)
+
+    const response = {
+        user_id: 'abc123',
+        company_name: 'Hillel',
+        contract_expiration_date: '22/11/2013',
+        'secret-token': 'unique$ecret',
+    };
+
+    let camelCasedResponse = {};
+
+    for (let key in response) {
+        const newKey = toCamelCase(key);
+        camelCasedResponse[newKey] = response[key];
+    }
+
+    console.log(camelCasedResponse);
+    /*{
+      userId: 'abc123',
+      companyName: 'Hillel',
+      contractExpirationDate: '22/11/2013',
+      'secret-token': 'unique$ecret', // залишено без змін
+    };*/
 
 </script>
 </body>
