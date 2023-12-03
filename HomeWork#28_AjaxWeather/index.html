@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+</head>
+<body>
+<h1>Weather Information for Lviv</h1>
+<div id="weatherInfo"></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // API URL for weather data
+    const apiUrl = 'http://api.openweathermap.org/data/2.5/weather?q=LVIV&units=metric&APPID=2e313d8ee2eb5fde63ce58384f75c2b3';
+
+    // Element to display weather information
+    const weatherInfoElement = document.getElementById('weatherInfo');
+
+    // Fetch weather data
+    fetch(apiUrl)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(`Failed to fetch weather. Status: ${response.status}`);
+              }
+              return response.json();
+            })
+            .then(data => {
+              // Extract relevant weather information
+              const temperature = data.main.temp;
+              const pressure = data.main.pressure;
+              const description = data.weather[0].description;
+              const humidity = data.main.humidity;
+              const windSpeed = data.wind.speed;
+              const windDirection = data.wind.deg;
+              const weatherIcon = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+
+              // Display weather information
+              weatherInfoElement.innerHTML = `
+                        <p><strong>Temperature:</strong> ${temperature}°C</p>
+                        <p><strong>Pressure:</strong> ${pressure} hPa</p>
+                        <p><strong>Description:</strong> ${description}</p>
+                        <p><strong>Humidity:</strong> ${humidity}%</p>
+                        <p><strong>Wind Speed:</strong> ${windSpeed} m/s</p>
+                        <p><strong>Wind Direction:</strong> ${windDirection}°</p>
+                        <img src="${weatherIcon}" alt="Weather Icon">
+                    `;
+            })
+            .catch(error => {
+              console.error(`Error: ${error.message}`);
+              weatherInfoElement.innerHTML = '<p>Failed to fetch weather data.</p>';
+            });
+  });
+</script>
+</body>
+</html>
